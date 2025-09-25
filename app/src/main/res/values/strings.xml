@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidAssessment</string>
+    <string name="True_String">True</string>
+    <string name="False_String">False</string>
 </resources>

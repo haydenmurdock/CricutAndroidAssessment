@@ -56,6 +56,7 @@ detekt {
 }
 
 dependencies {
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -70,6 +71,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.room.common.jvm)
     ksp(libs.hilt.compiler)
 
     // Detekt
