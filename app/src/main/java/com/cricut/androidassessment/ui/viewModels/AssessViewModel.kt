@@ -14,8 +14,12 @@ class AssessViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val userId: String = savedStateHandle["userId"] ?: "default"
-    private val _uiState = MutableStateFlow<String>("You can create Android SDK's in C#")
-    val prompt: StateFlow<String> = _uiState.asStateFlow()
+    private val _trueFalsePrompt = MutableStateFlow<String>("You can create Android SDK's in C#")
+    private val _multipleChoicePrompt = MutableStateFlow<String>("What food is the current OS named after?")
+    val tfPrompt: StateFlow<String> = _trueFalsePrompt.asStateFlow()
+    val multiPrompt: StateFlow<String> = _multipleChoicePrompt.asStateFlow()
+
+
 
 }
 
