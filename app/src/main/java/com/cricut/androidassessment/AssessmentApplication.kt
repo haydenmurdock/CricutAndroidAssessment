@@ -12,6 +12,8 @@ import javax.inject.Singleton
 
 @HiltAndroidApp
 class AssessmentApplication : Application()
+
+//This is for coroutine scope objects
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {

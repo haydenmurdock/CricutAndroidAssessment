@@ -38,6 +38,7 @@ fun AssessMultipleChoiceScreen(
     ) {
     val viewModel:AssessViewModel = viewModel()
     val multiChoicePrompt:String = viewModel.multiPrompt.collectAsState().value
+
          Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             BackButton {
                 navController.navigate("AssessTrueFalseScreen")

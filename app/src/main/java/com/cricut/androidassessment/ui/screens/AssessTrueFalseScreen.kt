@@ -1,4 +1,6 @@
 package com.cricut.androidassessment.ui.screens
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +15,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -48,7 +52,7 @@ fun AssessTrueFalseScreen(
     onFalseClick = {
         println("User picked False")
         navController.navigate("AssessMultipleChoiceScreen")
-    })
+        })
     }
 }
 @Composable
@@ -77,17 +81,25 @@ fun TrueFalseButtons(
             modifier = modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
+            val interactionSourceTrue = remember { MutableInteractionSource() }
+            val isPressedTrue by interactionSourceTrue.collectIsPressedAsState()
+            val interactionSourceFalse = remember { MutableInteractionSource() }
+            val isPressedFalse by interactionSourceFalse.collectIsPressedAsState()
             Button(
                 onClick = onTrueClick,
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0000FF)),
+                colors =  if (isPressedTrue)
+                    ButtonDefaults.buttonColors(containerColor = Color.Green) else ButtonDefaults.buttonColors(containerColor = Color.Blue) ,
+                interactionSource = interactionSourceTrue,
                 modifier = Modifier.weight(1f)
             ) {
                 Text(stringResource(id = R.string.True_String))
             }
-
+            val buttonColor =  Color.Blue
             Button(
                 onClick = onFalseClick,
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0000FF)),
+                colors =  if (isPressedFalse)
+                    ButtonDefaults.buttonColors(containerColor = Color.Green) else ButtonDefaults.buttonColors(containerColor = buttonColor) ,
+                interactionSource = interactionSourceFalse,
                 modifier = Modifier.weight(1f)
             ) {
                 Text(stringResource(id = R.string.False_String))
